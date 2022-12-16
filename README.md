@@ -1,10 +1,10 @@
 # poker
 Poker Card Evaluator
 
-I dont know poker, needed to studay the principles
-Looked for a online api that can evaluate the hand found https://www.pokerapi.dev/ but this is based on texas holdem that requires 5 tables cards and then the players 2 cards. This will require extra work to get going as you will be dealing with 7 cards , so which is the 5 the user actually entered etc
+I don't know poker, needed to study the principles
+Looked for an online api that can evaluate the hand found https://www.pokerapi.dev/ but this is based on texas holdem that requires 5 tables cards and then the players 2 cards. This will require extra work to get going as you will be dealing with 7 cards , so which is the 5 the user actually entered etc
 
-There for i went for a custom implementation
+There for I went for a custom implementation
 
 The basic idea is to analyse 5 cards received and determine the highest rank contained in the card set / hand.
 
