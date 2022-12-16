@@ -101,35 +101,31 @@ class CardTest extends bbb
     }
 
     public function test_is_card_invalid_x1(){
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage('This is not a valid card');
         $card = new Card('X1');
         $result = $card->isCardValid();
-        $this->assertFalse($result);
     }
 
 
     public function test_is_card_invalid_aaa123(){
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage('This is not a valid card');
         $card = new Card('aaa123');
         $result = $card->isCardValid();
-        $this->assertFalse($result);
     }
 
     public function test_is_card_invalid_aaas(){
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage('This is not a valid card');
         $card = new Card('aaas');
         $result = $card->isCardValid();
-        $this->assertFalse($result);
     }
 
     public function test_is_card_invalid_special_characters(){
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage('This is not a valid card');
         $card = new Card('-*/*-');
         $result = $card->isCardValid();
-        $this->assertFalse($result);
     }
-
-    /**
-     * A card can only be of one suite
-     */
-
-    /**
-     * A card can only have one rank
-     */
 }

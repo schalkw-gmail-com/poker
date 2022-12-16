@@ -4,6 +4,8 @@ namespace App\Classes;
 
 use Illuminate\Support\Facades\Log;
 
+use function PHPUnit\Framework\throwException;
+
 class Card
 {
     public string $name = '';
@@ -32,12 +34,16 @@ class Card
     {
         // take the card as input and define it into the rank and the suit
         $this->setName($card);
+        $this->isCardValid();
     }
 
 //    [S,D,H,C]
 //    [K,Q,J,10,9,8,7,6,5,4,3,2,A,JKR]
 //    [SK, SA, S10, S1]
 
+    /**
+     * @throws \Exception
+     */
     public function isCardValid(){
         Log::debug(__METHOD__. ' bof() ');
 
@@ -48,18 +54,18 @@ class Card
         //  - the remaining characters is in the allowed rank list
         $return = true;
         if(!$this->isLengthCorrect() || !$this->isCharacterAlhpaNumeric()){
-            var_dump( "the is not valid" );
-            $return = false;
+            Log::debug(__METHOD__. ' this is not a valid card: length or alpha numeric ');
+            throw new \Exception('This is not a valid card');
         }
 
         if(!$this->isSuitCorrect()){
-            var_dump( "the suit is not correct");
-            $return = false;
+            Log::debug(__METHOD__. ' this is not a valid card : suite ');
+            throw new \Exception('This is not a valid card');
         }
 
         if(!$this->isRankCorrect()){
-            dump("the rank is not correct");
-            $return = false;
+            Log::debug(__METHOD__. ' this is not a valid card : rank ');
+            throw new \Exception('This is not a valid card');
         }
 
         Log::debug(__METHOD__. ' eof() ');
@@ -123,7 +129,7 @@ class Card
      */
     public function getSuite(): string
     {
-        return $this->suite;
+        return $this->suite->name;
     }
 
     /**
@@ -140,7 +146,7 @@ class Card
      */
     public function getRank(): string
     {
-        return $this->rank;
+        return $this->rank->name;
     }
 
     /**

@@ -46,7 +46,8 @@ Requirements
 Setup instructions
 1 - clone the repo to your local machine
 2 - run composer install from with in the folder of the local repo
-3 - unit tests : php8.1 vendor/bin/phpunit --testdox
+3 - to run the unit tests : php8.1 vendor/bin/phpunit --testdox
+4 - start the api server: php8.1 artisan serve (go the link provided)
 
 
 Global rule set for the evaluator:
