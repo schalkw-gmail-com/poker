@@ -22,6 +22,10 @@ requesting code can then use it as required, be it a web interface or console ap
 Please note that for each of use I opted to include both the api and then the future "front end / access point", into 
 the code repo.
 
+I opted for Laravel as a base framework, as this is the base framework I work with on a daily basis, and I'm most used to 
+it. I'm using a framework as this does help me with the scaffolding which saves time. It also provides structured point 
+to start out from.
+
 Global rule set for the evaluator:
 1 - the tool only uses the standard 52 card deck during evaluation
 
