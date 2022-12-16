@@ -19,3 +19,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('test/card', 'App\Http\Controllers\Controller@testCard')->name('testCard');
+Route::post('card/add', 'App\Http\Controllers\Controller@addCards')->name('addCards');

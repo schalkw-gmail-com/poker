@@ -2,6 +2,13 @@
 
 namespace App\Classes;
 
+use App\Evaluator\FourOfaKind;
+use App\Evaluator\Strait;
+use App\Evaluator\StraitFlush;
+use App\Evaluator\ThreeOfaKind;
+use App\Evaluator\TwoPair;
+use Illuminate\Support\Facades\Log;
+
 class Hand
 {
     public array $cards;
@@ -75,4 +82,38 @@ class Hand
         }
         return $values;
     }
+
+    public function returnHand(){
+        $data = array();
+
+        foreach($this->cards as $card => $e ){
+            $data[] = $e;
+        }
+        return $data;
+    }
+
+    public function returnEvaluation(){
+        $pre = __METHOD__ . ' : ';
+        Log::debug($pre . ' x '.print_r($this->cards,true));
+        //$x = app()->make(FourOfaKind::class,[$this->cards])->evaluate();
+        $x = new FourOfaKind($this);
+
+        if ($x->evaluate()){
+            return "Four Of a Kind";
+        }
+
+
+
+
+        Log::debug($pre . ' x '.print_r($x,true));
+//        $w = app()->make(Strait::class,[$this])->evaluate();
+//        Log::debug($pre . ' w '.print_r($w,true));
+//        $s = app()->make(StraitFlush::class,[$this])->evaluate();
+//        Log::debug($pre . ' s '.print_r($s,true));
+//        $r = app()->make(TwoPair::class,[$this])->evaluate();
+//        Log::debug($pre . ' r '.print_r($r,true));
+//        $d = app()->make(ThreeOfaKind::class,[$this])->evaluate();
+//        Log::debug($pre . ' d '.print_r($d,true));
+    }
+
 }

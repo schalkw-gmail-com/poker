@@ -45,6 +45,8 @@ class HandTest extends bbb
 
     public function test_is_received_single_card_invalid(): void
     {
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage('This is not a valid card');
         $newHand = new Hand();
         $result = $newHand->addCard('XX3');
         $this->assertFalse($result);
@@ -70,6 +72,9 @@ class HandTest extends bbb
 
     public function test_is_received_multiple_cards_mixed(): void
     {
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage('This is not a valid card');
+
         $newHand = new Hand();
         $result = $newHand->addCard('D3');
         $this->assertTrue($result);
@@ -95,6 +100,9 @@ class HandTest extends bbb
     }
 
     public function test_is_hand_valid_with_two_cards(){
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage('This is not a valid card');
+
         $newHand = new Hand();
         $result1 = $newHand->addCard('D3');
         $result2 = $newHand->addCard('C3');
@@ -119,6 +127,9 @@ class HandTest extends bbb
     }
 
     public function test_can_duplicate_cards_be_added(){
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage('This is not a valid card');
+
         $newHand = new Hand();
         $result1 = $newHand->addCard('D3');
         $result2 = $newHand->addCard('C3');

@@ -34,7 +34,8 @@ I divided the work in the following order:
     of 5. I start with Four-of-a-kind as I thought it was the easier one, but it turned out to be a bit more of a middle 
     ground evaluation.
 3 - the api: now that I have a working base, I can create the api, which will allow the you to add cards to the hand
-    and then evaluate the hand
+    and then evaluate the hand. While I'm working on the API, I'm adding exception and propper error handling into the 
+    system. I did not do this earlier as I was concentrating on the functions it self and not how it will be used
 
 Please note for both the card entity and the evaluators I did create unit tests. This can be run in the terminal using
 php8.1 vendor/bin/phpunit --testdox
