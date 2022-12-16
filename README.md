@@ -57,6 +57,7 @@ centered around the rank and suit.
 
 Four of a kind: 4 cards of the same rank [K,Q,J,10,9,8,7,6,5,4,3,2,A,JKR] plus another card
 Strait: 5 cards of sequential rank but not of the same suit [S9,S8,S7,S6,S5,S4]
+Three of a kind: 3 cards of the same rank [K,Q,J,10,9,8,7,6,5,4,3,2,A,JKR] plus another two cards
 
 
 Future features
