@@ -2,6 +2,8 @@
 
 namespace App\Classes;
 
+use Illuminate\Support\Facades\Log;
+
 class Card
 {
     public string $name = '';
@@ -37,6 +39,8 @@ class Card
 //    [SK, SA, S10, S1]
 
     public function isCardValid(){
+        Log::debug(__METHOD__. ' bof() ');
+
         //name is valid if
         //  - it is alphanumeric only
         //  - it is between 2 and 3 characters
@@ -58,6 +62,7 @@ class Card
             $return = false;
         }
 
+        Log::debug(__METHOD__. ' eof() ');
         return $return;
     }
 

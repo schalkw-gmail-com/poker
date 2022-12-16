@@ -26,6 +26,29 @@ I opted for Laravel as a base framework, as this is the base framework I work wi
 used to it. I'm using a framework as this does help me with the scaffolding which saves time. It also provides 
 structured point to start out from.
 
+I divided the work in the following order:
+
+1 - card entity: be able to create a valid card and determine the suite and rank
+2 - the evaluators: each evaluator was done separately in order to have a working piece of software before going to the 
+    next item. I did not pick the suite validators beforehand but, decided on the go as I worked to the required number
+    of 5. I start with Four-of-a-kind as I thought it was the easier one, but it turned out to be a bit more of a middle 
+    ground evaluation.
+3 - the api: now that I have a working base, I can create the api, which will allow the you to add cards to the hand
+    and then evaluate the hand
+
+Please note for both the card entity and the evaluators I did create unit tests. This can be run in the terminal using
+php8.1 vendor/bin/phpunit --testdox
+
+Requirements
+    PHP8.1
+    composer (php package manager)
+
+Setup instructions
+1 - clone the repo to your local machine
+2 - run composer install from with in the folder of the local repo
+3 - unit tests : php8.1 vendor/bin/phpunit --testdox
+
+
 Global rule set for the evaluator:
 1 - the tool only uses the standard 52 card deck during evaluation, minus the 2 joker cards. thus 50 in total
 
@@ -63,7 +86,8 @@ Strait Flush: 5 cards of the same suite [S,D,H,C]  and all must be sequential
 
 
 Future features
-At this point I'm not sure what to add onto this in future, but will come back to this as I progress
+At this point I'm not sure what to add onto this in the future, but will come back to this as I progress
+1 - Clean up - I need to clean up the code, add proper log message etc
 1 - The sequencial algorithm must be refactored to a single functions that can be used every where. perhaps this can be
     a trait or a base class
 2 - change up the entry system to facilitate the possiblity to only call the evaluate function on the a valid hand.
