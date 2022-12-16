@@ -22,9 +22,9 @@ requesting code can then use it as required, be it a web interface or console ap
 Please note that for each of use I opted to include both the api and then the future "front end / access point", into 
 the code repo.
 
-I opted for Laravel as a base framework, as this is the base framework I work with on a daily basis, and I'm most used to 
-it. I'm using a framework as this does help me with the scaffolding which saves time. It also provides structured point 
-to start out from.
+I opted for Laravel as a base framework, as this is the base framework I work with on a daily basis, and I'm most 
+used to it. I'm using a framework as this does help me with the scaffolding which saves time. It also provides 
+structured point to start out from.
 
 Global rule set for the evaluator:
 1 - the tool only uses the standard 52 card deck during evaluation, minus the 2 joker cards. thus 50 in total
@@ -32,7 +32,8 @@ Global rule set for the evaluator:
 The Card
 Identifiable traits:
 suite - spade, diamond, hart, club (the image on the card) [S,D,H,C]
-rank - number / value the card represents : king, queen, jack, 10,9,8,7,6,5,4,3,2, ace, joker [K,Q,J,10,9,8,7,6,5,4,3,2,A,JKR]
+rank - number / value the card represents : king, queen, jack, 10,9,8,7,6,5,4,3,2, ace, joker
+[K,Q,J,10,9,8,7,6,5,4,3,2,A,JKR]
 
 To be considered a valid card 
     1 - the suite needs to be in the lists of suites
@@ -51,15 +52,19 @@ To be considered a valid hand
     3 - all cards must be unique
 
 Evaluators
-Once you have setup your hand, you need to be able to evaluate it. the evaluators each have different rules but is centered 
-around the rank and suit.
+Once you have setup your hand, you need to be able to evaluate it. the evaluators each have different rules but is 
+centered around the rank and suit.
 
 Four of a kind: 4 cards of the same rank [K,Q,J,10,9,8,7,6,5,4,3,2,A,JKR] plus another card
+Strait: 5 cards of sequential rank but not of the same suit [S9,S8,S7,S6,S5,S4]
 
 
 Future features
 At this point I'm not sure what to add onto this in future, but will come back to this as I progress
 1 - change up the entry system to facilitate the possiblity to only call the evaluate function on the a valid hand.
-    currently this is being done on each evaluator which can be more effecient by prevent the system to get to this point
-    completely
-2
+    currently this is being done on each evaluator which can be more effecient by prevent the system to get to this 
+    point completely
+2 - adapt the system to handle the joker [JKR] card
+3 - the integer values of the ranks, should be moved to the Ranks enum for better logical reading, seeing that it is
+    directly related to each rank
+

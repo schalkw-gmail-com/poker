@@ -7,17 +7,29 @@ class Card
     public string $name = '';
     public Suit $suite;
     public Ranks $rank;
+    public int $value;
+
+    //these are the integer values of the individual ranks.
+    const integerValues  = [
+            'K' => 13,
+            'Q' => 12,
+            'J' => 11,
+            '10' => 10,
+            '9' => 9,
+            '8' => 8,
+            '7' => 7,
+            '6' => 6,
+            '5' => 5,
+            '4' => 4,
+            '3' => 3,
+            '2' => 2,
+            'A' => 1,
+    ];
 
     public function __construct($card)
     {
-
-        $this->setName($card);
         // take the card as input and define it into the rank and the suit
-
-        //$this->splitName($card);
-
-//        $this->setRank();
-//        $this->setSuite();
+        $this->setName($card);
     }
 
 //    [S,D,H,C]
@@ -52,13 +64,8 @@ class Card
     public function isSuitCorrect(){
         $suits = Suit::cases();
         $cardSuit = substr($this->getName(), 0, 1);
-        dump("RBBBBB");
-        dump(strtolower($cardSuit));
         foreach ($suits as $suit){
-
-            dump(strtolower($suit->value));
             if(strtolower($cardSuit) === strtolower($suit->value)){
-                dump("WEEEEEEEEEEEEEEe");
                 $this->setSuite($suit);
                 return true;
             }
@@ -72,11 +79,11 @@ class Card
         foreach ($ranks as $rank){
             if(strtolower($cardRank) === strtolower($rank->value)){
                 $this->setRank($rank);
+                $this->setValue(self::integerValues[$rank->value]);
                 return true;
             }
         }
         return false;
-
     }
 
     public function isCharacterAlhpaNumeric(){
@@ -151,5 +158,21 @@ class Card
     public function setName(string $name): void
     {
         $this->name = $name;
+    }
+
+    /**
+     * @return int
+     */
+    public function getValue(): int
+    {
+        return $this->value;
+    }
+
+    /**
+     * @param int $value
+     */
+    public function setValue(int $value): void
+    {
+        $this->value = $value;
     }
 }

@@ -58,4 +58,12 @@ class Hand
         }
         return $ranks;
     }
+
+    public function returnIntegerValues(){
+        $values = array();
+        foreach($this->cards as $card => $e ){
+            $values[] = $e->value;
+        }
+        return $values;
+    }
 }
