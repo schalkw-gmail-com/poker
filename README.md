@@ -51,7 +51,15 @@ To be considered a valid hand
     3 - all cards must be unique
 
 Evaluators
+Once you have setup your hand, you need to be able to evaluate it. the evaluators each have different rules but is centered 
+around the rank and suit.
+
+Four of a kind: 4 cards of the same rank [K,Q,J,10,9,8,7,6,5,4,3,2,A,JKR] plus another card
 
 
 Future features
 At this point I'm not sure what to add onto this in future, but will come back to this as I progress
+1 - change up the entry system to facilitate the possiblity to only call the evaluate function on the a valid hand.
+    currently this is being done on each evaluator which can be more effecient by prevent the system to get to this point
+    completely
+2

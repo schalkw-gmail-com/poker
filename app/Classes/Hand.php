@@ -21,7 +21,6 @@ class Hand
                 $return = true;
                 var_dump("Added the card");
             }
-
         }else{
             var_dump("Either the card is invalid or the hand is already full");
         }
@@ -50,5 +49,13 @@ class Hand
             $return = true;
         }
         return $return;
+    }
+
+    public function returnRanks(){
+        $ranks = array();
+        foreach($this->cards as $card => $e ){
+            $ranks[] = $e->rank->value;
+        }
+        return $ranks;
     }
 }
