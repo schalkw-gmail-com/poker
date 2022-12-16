@@ -27,12 +27,12 @@ it. I'm using a framework as this does help me with the scaffolding which saves 
 to start out from.
 
 Global rule set for the evaluator:
-1 - the tool only uses the standard 52 card deck during evaluation
+1 - the tool only uses the standard 52 card deck during evaluation, minus the 2 joker cards. thus 50 in total
 
 The Card
 Identifiable traits:
-suite - spade, diamond, hard, club (the image on the card)
-rank - number / value the card represents : king, queen, jack, 10,9,8,7,6,5,4,3,2,1, ace, joker
+suite - spade, diamond, hart, club (the image on the card) [S,D,H,C]
+rank - number / value the card represents : king, queen, jack, 10,9,8,7,6,5,4,3,2, ace, joker [K,Q,J,10,9,8,7,6,5,4,3,2,A,JKR]
 
 To be considered a valid card 
     1 - the suite needs to be in the lists of suites
