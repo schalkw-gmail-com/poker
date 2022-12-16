@@ -5,8 +5,8 @@ namespace App\Classes;
 class Card
 {
     public string $name = '';
-    public string $suite = '';
-    public string $rank = '';
+    public Suit $suite;
+    public Ranks $rank;
 
     public function __construct($card)
     {
@@ -14,7 +14,7 @@ class Card
         $this->setName($card);
         // take the card as input and define it into the rank and the suit
 
-        $this->splitName($card);
+        //$this->splitName($card);
 
 //        $this->setRank();
 //        $this->setSuite();
@@ -52,8 +52,14 @@ class Card
     public function isSuitCorrect(){
         $suits = Suit::cases();
         $cardSuit = substr($this->getName(), 0, 1);
+        dump("RBBBBB");
+        dump(strtolower($cardSuit));
         foreach ($suits as $suit){
+
+            dump(strtolower($suit->value));
             if(strtolower($cardSuit) === strtolower($suit->value)){
+                dump("WEEEEEEEEEEEEEEe");
+                $this->setSuite($suit);
                 return true;
             }
         }
@@ -65,6 +71,7 @@ class Card
         $cardRank = substr($this->getName(), 1);
         foreach ($ranks as $rank){
             if(strtolower($cardRank) === strtolower($rank->value)){
+                $this->setRank($rank);
                 return true;
             }
         }
@@ -94,7 +101,7 @@ class Card
 
     public function __toString(): string
     {
-        return 'my name is'.$this->name;
+        return $this->name;
     }
 
     /**
@@ -108,8 +115,9 @@ class Card
     /**
      * @param string $suite
      */
-    public function setSuite(string $suite): void
+    public function setSuite(Suit $suite): void
     {
+        var_dump("WWWWWWWWWWW = ".print_r($suite));
         $this->suite = $suite;
     }
 
@@ -124,7 +132,7 @@ class Card
     /**
      * @param string $rank
      */
-    public function setRank(string $rank): void
+    public function setRank(Ranks $rank): void
     {
         $this->rank = $rank;
     }

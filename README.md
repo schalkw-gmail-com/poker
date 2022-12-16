@@ -41,10 +41,14 @@ To be considered a valid card
 The Hand
 Identifiable traits:
 a hand is a collection of 5 non-identical cards (based on the global rule set)
+the hand should receive 1 card a time to the total number of the allowed cards, this will give your the ability to
+validate the cards as they come in and immediatly provide feedback as to if the card is valid. once the hand is full
+it can be evaluated
 
 To be considered a valid hand
     1 - must be 5 cards only
     2 - all cards must be valid
+    3 - all cards must be unique
 
 Evaluators
 
