@@ -59,14 +59,17 @@ Four of a kind: 4 cards of the same rank [K,Q,J,10,9,8,7,6,5,4,3,2,A,JKR] plus a
 Strait: 5 cards of sequential rank but not of the same suit [S9,S8,S7,S6,S5,S4]
 Three of a kind: 3 cards of the same rank [K,Q,J,10,9,8,7,6,5,4,3,2,A,JKR] plus another two cards
 Two pair: 2 cards of one rank [K,Q,J,10,9,8,7,6,5,4,3,2,A,JKR], 2 cards of another rank [K,Q,J,10,9,8,7,6,5,4,3,2,A,JKR], plus a card
+Strait Flush: 5 cards of the same suite [S,D,H,C]  and all must be sequential
 
 
 Future features
 At this point I'm not sure what to add onto this in future, but will come back to this as I progress
-1 - change up the entry system to facilitate the possiblity to only call the evaluate function on the a valid hand.
+1 - The sequencial algorithm must be refactored to a single functions that can be used every where. perhaps this can be
+    a trait or a base class
+2 - change up the entry system to facilitate the possiblity to only call the evaluate function on the a valid hand.
     currently this is being done on each evaluator which can be more effecient by prevent the system to get to this 
     point completely
-2 - adapt the system to handle the joker [JKR] card
-3 - the integer values of the ranks, should be moved to the Ranks enum for better logical reading, seeing that it is
+3 - adapt the system to handle the joker [JKR] card
+4 - the integer values of the ranks, should be moved to the Ranks enum for better logical reading, seeing that it is
     directly related to each rank
 

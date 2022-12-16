@@ -60,6 +60,14 @@ class Hand
         return $ranks;
     }
 
+    public function returnSuites(){
+        $suites = array();
+        foreach($this->cards as $card => $e ){
+            $suites[] = $e->suite->value;
+        }
+        return $suites;
+    }
+
     public function returnIntegerValues(){
         $values = array();
         foreach($this->cards as $card => $e ){
