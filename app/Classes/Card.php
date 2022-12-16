@@ -44,17 +44,17 @@ class Card
         //  - the remaining characters is in the allowed rank list
         $return = true;
         if(!$this->isLengthCorrect() || !$this->isCharacterAlhpaNumeric()){
-            echo "the is not valid";
+            var_dump( "the is not valid" );
             $return = false;
         }
 
         if(!$this->isSuitCorrect()){
-            echo "the suit is not correct";
+            var_dump( "the suit is not correct");
             $return = false;
         }
 
         if(!$this->isRankCorrect()){
-            echo "the rank is not correct";
+            dump("the rank is not correct");
             $return = false;
         }
 
@@ -64,7 +64,9 @@ class Card
     public function isSuitCorrect(){
         $suits = Suit::cases();
         $cardSuit = substr($this->getName(), 0, 1);
+        var_dump("card Suit = ". $cardSuit);
         foreach ($suits as $suit){
+            var_dump( $cardSuit. " - ".$suit->value );
             if(strtolower($cardSuit) === strtolower($suit->value)){
                 $this->setSuite($suit);
                 return true;
@@ -124,7 +126,7 @@ class Card
      */
     public function setSuite(Suit $suite): void
     {
-        var_dump("WWWWWWWWWWW = ".print_r($suite));
+        var_dump("set suite = ".print_r($suite,true));
         $this->suite = $suite;
     }
 
@@ -141,6 +143,7 @@ class Card
      */
     public function setRank(Ranks $rank): void
     {
+        var_dump("set rank = ".print_r($rank,true));
         $this->rank = $rank;
     }
 

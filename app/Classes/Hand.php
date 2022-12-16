@@ -19,10 +19,10 @@ class Hand
             if (!$this->checkForDuplicatedCards($card)) {
                 $this->cards[] = $card;
                 $return = true;
-                var_dump("Added the card");
+                dump("Added the card = ".print_r($card->name,true));
             }
         }else{
-            var_dump("Either the card is invalid or the hand is already full");
+            dump("Either the card is invalid or the hand is already full");
         }
 
         return $return;
@@ -30,12 +30,13 @@ class Hand
 
     public function checkForDuplicatedCards($card){
         foreach ($this->cards as $cards){
-
-
+            dump("$$ ".$cards->name . " ---- ".$card);
             if(strtolower($cards->name) === strtolower($card)){
+                dump("we  found a duplicte");
                 return true;
             }
         }
+        dump("no duplicate found");
         return false;
     }
 
