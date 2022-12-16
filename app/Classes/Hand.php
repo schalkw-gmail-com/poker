@@ -2,10 +2,12 @@
 
 namespace App\Classes;
 
+use App\Evaluator\AbstractEvaluator;
 use App\Evaluator\FourOfaKind;
 use App\Evaluator\Strait;
 use App\Evaluator\StraitFlush;
 use App\Evaluator\ThreeOfaKind;
+use App\Evaluator\TwoFourOfaKind;
 use App\Evaluator\TwoPair;
 use Illuminate\Support\Facades\Log;
 
@@ -92,20 +94,35 @@ class Hand
         return $data;
     }
 
+    public function xxx(AbstractEvaluator $sss){
+        var_dump(" sss ".print_r($sss,true));
+        return $sss->evaluate();
+    }
+
     public function returnEvaluation(){
         $pre = __METHOD__ . ' : ';
         Log::debug($pre . ' x '.print_r($this->cards,true));
         //$x = app()->make(FourOfaKind::class,[$this->cards])->evaluate();
-        $x = new FourOfaKind($this);
+//        $x = new FourOfaKind($this);
+//
+//        if ($x->evaluate()){
+//            return "Four Of a Kind";
+//        }
 
-        if ($x->evaluate()){
-            return "Four Of a Kind";
-        }
+//        $w = new TwoFourOfaKind($this);
+//        $e = $w->evaluate();
+        var_dump("@@@@@@@@@@@@@@@2");
+        $xxxB = new TwoFourOfaKind($this);
+        var_dump("%%%%%%%");
+        $www = $this->xxx($xxxB);
+        var_dump("RRRRRRRRRRRRRRRR".print_r($www,true));
+
+       // Log::debug($pre . ' x '.print_r(var_dump($w),true));
+       // return "TwoFourOfAKind";
 
 
 
 
-        Log::debug($pre . ' x '.print_r($x,true));
 //        $w = app()->make(Strait::class,[$this])->evaluate();
 //        Log::debug($pre . ' w '.print_r($w,true));
 //        $s = app()->make(StraitFlush::class,[$this])->evaluate();
