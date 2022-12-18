@@ -13,6 +13,8 @@ use Illuminate\Http\Request;
 class Controller extends BaseController
 {
     /**
+     * Test is the data past is a valid card.
+     *
      * Accept a card through POST and create an object from it to return as json
      *
      * @param Request $request
