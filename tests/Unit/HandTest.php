@@ -2,16 +2,12 @@
 
 namespace Tests\Unit;
 
-use App\Classes\Card;
 use App\Classes\Hand;
-use App\Classes\Suit;
-use PHPUnit\Framework\TestCase;
-use Tests\TestCase as bbb;
+use Tests\TestCase;
 
-class HandTest extends bbb
+class HandTest extends TestCase
 {
-
-    protected $hand;
+    protected Hand $hand;
 
     /**
      * setUp
@@ -38,9 +34,9 @@ class HandTest extends bbb
         $result = $newHand->addCard('D3');
         $this->assertTrue($result);
 
-        $this->assertEquals('D3',$newHand->viewCard(0)->name,'The name is not correct');
-        $this->assertEquals('Diamonds',$newHand->viewCard(0)->suite->name,'Suite is not correct');
-        $this->assertEquals('3',$newHand->viewCard(0)->rank->value,'rank is not correct');
+        $this->assertEquals('D3', $newHand->viewCard(0)->name, 'The name is not correct');
+        $this->assertEquals('Diamonds', $newHand->viewCard(0)->suite->name, 'Suite is not correct');
+        $this->assertEquals('3', $newHand->viewCard(0)->rank->value, 'rank is not correct');
     }
 
     public function test_is_received_single_card_invalid(): void
@@ -56,16 +52,16 @@ class HandTest extends bbb
         $result = $newHand->addCard('D3');
         $this->assertTrue($result);
 
-        $this->assertEquals('D3',$newHand->viewCard(0)->name,'The name is not correct');
-        $this->assertEquals('Diamonds',$newHand->viewCard(0)->suite->name,'Suite is not correct');
-        $this->assertEquals('3',$newHand->viewCard(0)->rank->value,'rank is not correct');
+        $this->assertEquals('D3', $newHand->viewCard(0)->name, 'The name is not correct');
+        $this->assertEquals('Diamonds', $newHand->viewCard(0)->suite->name, 'Suite is not correct');
+        $this->assertEquals('3', $newHand->viewCard(0)->rank->value, 'rank is not correct');
 
         $result = $newHand->addCard('S9');
         $this->assertTrue($result);
 
-        $this->assertEquals('S9',$newHand->viewCard(1)->name,'The name is not correct');
-        $this->assertEquals('Spades',$newHand->viewCard(1)->suite->name,'Suite is not correct');
-        $this->assertEquals('9',$newHand->viewCard(1)->rank->value,'rank is not correct');
+        $this->assertEquals('S9', $newHand->viewCard(1)->name, 'The name is not correct');
+        $this->assertEquals('Spades', $newHand->viewCard(1)->suite->name, 'Suite is not correct');
+        $this->assertEquals('9', $newHand->viewCard(1)->rank->value, 'rank is not correct');
     }
 
     public function test_is_received_multiple_cards_mixed(): void
@@ -74,15 +70,16 @@ class HandTest extends bbb
         $result = $newHand->addCard('D3');
         $this->assertTrue($result);
 
-        $this->assertEquals('D3',$newHand->viewCard(0)->name,'The name is not correct');
-        $this->assertEquals('Diamonds',$newHand->viewCard(0)->suite->name,'Suite is not correct');
-        $this->assertEquals('3',$newHand->viewCard(0)->rank->value,'rank is not correct');
+        $this->assertEquals('D3', $newHand->viewCard(0)->name, 'The name is not correct');
+        $this->assertEquals('Diamonds', $newHand->viewCard(0)->suite->name, 'Suite is not correct');
+        $this->assertEquals('3', $newHand->viewCard(0)->rank->value, 'rank is not correct');
 
         $result = $newHand->addCard('X9');
         $this->assertFalse($result);
     }
 
-    public function test_is_hand_valid(){
+    public function test_is_hand_valid(): void
+    {
         $newHand = new Hand();
         $result1 = $newHand->addCard('D3');
         $result2 = $newHand->addCard('C3');
@@ -94,7 +91,8 @@ class HandTest extends bbb
         $this->asserttrue($isValidHand);
     }
 
-    public function test_is_hand_valid_with_two_cards(){
+    public function test_is_hand_valid_with_two_cards(): void
+    {
         $newHand = new Hand();
         $result1 = $newHand->addCard('D3');
         $result2 = $newHand->addCard('C3');
@@ -103,7 +101,8 @@ class HandTest extends bbb
         $this->assertFalse($isValidHand);
     }
 
-    public function test_is_hand_valid_with_extra_cards(){
+    public function test_is_hand_valid_with_extra_cards(): void
+    {
         $newHand = new Hand();
         $result1 = $newHand->addCard('D3');
         $result2 = $newHand->addCard('C3');
@@ -118,12 +117,15 @@ class HandTest extends bbb
         $this->asserttrue($isValidHand);
     }
 
-    public function test_can_duplicate_cards_be_added(){
+    public function test_can_duplicate_cards_be_added(): void
+    {
         $newHand = new Hand();
         $result1 = $newHand->addCard('D3');
         $result2 = $newHand->addCard('C3');
         $result3 = $newHand->addCard('C3');
+
         $this->assertFalse($result3);
+
         $isValidHand = $newHand->validateHand();
         $this->assertFalse($isValidHand);
     }
