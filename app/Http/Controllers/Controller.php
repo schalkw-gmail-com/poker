@@ -27,7 +27,7 @@ class Controller extends BaseController
 
         try {
             $request->validate([
-                'card' => 'required'
+                'card' => 'required|string'
             ]);
 
             $card = new Card($request->input('card'));
