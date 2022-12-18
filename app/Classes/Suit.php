@@ -2,6 +2,9 @@
 
 namespace App\Classes;
 
+/**
+ * Enum to house and handle the suit of a playing card
+ */
 enum Suit: string
 {
     case Hearts = 'H';
@@ -17,7 +20,8 @@ enum Suit: string
         return $this->name;
     }
 
-    public function getShortName(){
+    public function getShortName(): string
+    {
         return substr($this->getName(), 0, 1);
     }
 }
