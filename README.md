@@ -76,6 +76,25 @@ php8.1 artisan serve
 ```
 5 - Use Postman or CURL to access the end points
 
+/test/card - allows you to submit a card via POST to the service, and it returns either the card details
+or an error of invalid card. 
+
+#### Examples:
+```curl
+curl http://127.0.0.1:8000/api/test/card -X POST -d "card=value1"
+```
+Returns a json error as this is not a valid card: {"error":"This is not a valid card"}
+
+```curl
+curl http://127.0.0.1:8000/api/test/card -X POST -d "card=D4"
+```
+Returns a json array {"data":{"name":"D5","rank":"Five","suite":"Diamonds"}}
+
+```curl
+curl http://127.0.0.1:8000/api/test/card -X POST -d "ee=D4"
+```
+Returns a json error {"error":"The card field is required."}}
+
 ## Rules and definitions:
 
 ### Global rule:  
