@@ -18,13 +18,20 @@ class StraitFlush implements Evaluators
         $this->hand = $hand;
     }
 
-    public function validHand()
+    /**
+     * @return bool
+     */
+    public function validHand():bool
     {
         return $this->hand->validateHand();
     }
 
     // All cards must have the same suite and be sequencial
-    public function evaluate(){
+
+    /**
+     * @return bool
+     */
+    public function evaluate():bool{
         $return = false;
         if($this->validHand()) {
 

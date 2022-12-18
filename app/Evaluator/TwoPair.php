@@ -18,13 +18,20 @@ class TwoPair implements Evaluators
         $this->hand = $hand;
     }
 
-    public function validHand()
+    /**
+     * @return bool
+     */
+    public function validHand():bool
     {
         return $this->hand->validateHand();
     }
 
     // two pairs of ranks and a separate card
-    public function evaluate(){
+
+    /**
+     * @return bool
+     */
+    public function evaluate():bool{
         $return = false;
         if($this->validHand()) {
             $handRanks = $this->hand->returnRanks();
@@ -34,7 +41,12 @@ class TwoPair implements Evaluators
     }
 
 
-    public function checkWithIntegers($handRanks){
+    /**
+     * @param $handRanks
+     * @return bool
+     */
+    public function checkWithIntegers($handRanks): bool
+    {
 
         /*
             becasue we are dealing with ranks that is not of inter value [K,Q,J,A], it is better to do the pair checking

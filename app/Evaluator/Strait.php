@@ -17,7 +17,7 @@ class Strait implements Evaluators
         $this->hand = $hand;
     }
 
-    public function validHand()
+    public function validHand():bool
     {
         return $this->hand->validateHand();
     }
@@ -30,7 +30,7 @@ class Strait implements Evaluators
     // step 2 - order the list
     // step 3 - using a for loop starting at the min value and incrementing 1 per loop, check if the value in the
     // sequence match. if it does not you dont have a sequencial list, therefor not a strait hand
-    public function evaluate()
+    public function evaluate():bool
     {
         $return = false;
 

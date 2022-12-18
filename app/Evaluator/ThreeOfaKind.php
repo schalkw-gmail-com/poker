@@ -18,13 +18,20 @@ class ThreeOfaKind implements Evaluators
         $this->hand = $hand;
     }
 
-    public function validHand()
+    /**
+     * @return bool
+     */
+    public function validHand():bool
     {
         return $this->hand->validateHand();
     }
 
     // three of a kind = 3 cards of same rank plus another.
-    public function evaluate(){
+
+    /**
+     * @return bool
+     */
+    public function evaluate(): bool{
         $return = false;
         dump('ssss');
         if($this->validHand()) {
