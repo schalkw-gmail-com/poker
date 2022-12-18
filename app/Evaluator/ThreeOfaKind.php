@@ -19,7 +19,7 @@ class ThreeOfaKind implements Evaluators
     /**
      * @return bool
      */
-    public function validHand():bool
+    public function validHand(): bool
     {
         return $this->hand->validateHand();
     }
@@ -31,11 +31,12 @@ class ThreeOfaKind implements Evaluators
      *
      * @return bool
      */
-    public function evaluate(): bool{
+    public function evaluate(): bool
+    {
         Log::debug(__METHOD__ . ' bof() ');
         $return = false;
 
-        if($this->validHand()) {
+        if ($this->validHand()) {
             $handRanks = $this->hand->returnRanks();
             $handValues = array_count_values($handRanks);
 
