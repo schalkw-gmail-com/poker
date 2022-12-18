@@ -9,7 +9,6 @@ use App\Evaluator\FourOfaKind;
 use App\Evaluator\Strait;
 use App\Evaluator\StraitFlush;
 use App\Evaluator\ThreeOfaKind;
-use App\Evaluator\TwoFourOfaKind;
 use App\Evaluator\TwoPair;
 
 class Hand
@@ -171,29 +170,24 @@ class Hand
         return $data;
     }
 
-    public function xxx(AbstractEvaluator $sss){
+    public function evaluate(AbstractEvaluator $abstractEvaluator): bool
+    {
 
-        return $sss->evaluate();
+        return $abstractEvaluator->evaluate();
     }
 
-    public function returnEvaluation(){
-        $pre = __METHOD__ . ' : ';
-        Log::debug($pre . ' x '.print_r($this->cards,true));
-        //$x = app()->make(FourOfaKind::class,[$this->cards])->evaluate();
-//        $x = new FourOfaKind($this);
-//
-//        if ($x->evaluate()){
-//            return "Four Of a Kind";
-//        }
+    public function returnEvaluation(): string
+    {
+        Log::debug(__METHOD__ . ' : bof() ');
+        $return = "";
 
-//        $w = new TwoFourOfaKind($this);
-//        $e = $w->evaluate();
-        $xxxB = new TwoFourOfaKind($this);
-        $www = $this->xxx($xxxB);
+        $evaluatedHand = new FourOfaKind($this);
+        if($this->evaluate($evaluatedHand)){
+            return "Four Of a Kind";
+        }
 
-       // Log::debug($pre . ' x '.print_r(var_dump($w),true));
-       // return "TwoFourOfAKind";
-
+        Log::debug(__METHOD__ . ' : eof() ');
+        return $return;
 
 
 

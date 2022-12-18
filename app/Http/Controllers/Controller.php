@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 class Controller extends BaseController
 {
     /**
-     * Test is the data past is a valid card.
+     * Test that the data passed to the endpoint is a valid card.
      *
      * Accept a card through POST and create an object from it to return as json
      *
@@ -45,12 +45,12 @@ class Controller extends BaseController
     }
 
     /**
-     * Accept a card through POST and create an object from it to return as json
+     * Accept an array of cards through POST, validate the cards, produce a card hand and return the hand rank via json
      *
      * @param Request $request
      * @return JsonResponse
      */
-    function addCards(Request $request): JsonResponse
+    public function addCards(Request $request): JsonResponse
     {
         $pre = __METHOD__ . ' : ';
         Log::debug($pre . 'bof', func_get_args());
@@ -60,6 +60,10 @@ class Controller extends BaseController
         Log::debug($pre . ' ssssssssss ' . print_r($request->toArray(), true));
 
         try {
+            $request->validate([
+                'card' => 'required|array|size:5'
+            ]);
+
             $cards = $request->input('card');
             $hand = new Hand();
             foreach ($cards as $card) {
