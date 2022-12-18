@@ -168,22 +168,30 @@ centered around the rank and suit.
 5 cards of the same suite [S,D,H,C]  and all must be sequential
 
 ## Future features:
+These items are in order of importance.
 
-1 - Clean up - I need to clean up the code, add proper log message etc
+1 - create tests for the api 
 
-2 - The sequential algorithm must be refactored into a single function that can 
+2 - the integer values of the ranks, should be moved to the Ranks enum for
+    better logical reading, seeing that it is directly related to each rank
+
+3 - error handling should be improved to be more granular, in order to pinpoint which card in the array
+    is invalid
+
+4 - The sequential algorithm must be refactored into a single function that can 
     be used everywhere. perhaps this can be a trait or a base class. 
     This will eliminate duplicated code in the evaluators.
 
-3 - change up the entry system to facilitate the possibility to only call the 
+5 - change up the entry system to facilitate the possibility to only call the 
     evaluate function on a valid hand. Currently, this is being done on each 
     evaluator which can be more efficient by preventing the system to get to this 
     point completely
 
-3 - adapt the system to handle the joker [JKR] card
+6 - adapt the system to handle the joker [JKR] card
 
-4 - the integer values of the ranks, should be moved to the Ranks enum for 
-    better logical reading, seeing that it is directly related to each rank
+7 - API documentation needs to be done, something like PHPDocumenter should be able to read the doc blocks and provide
+    the openApi document for me
 
-5 - error handling should be improved to be more granular, in order to pinpoint which card in the array 
-    is invalid 
+8 - Add a front end to system through HTML and Javascript
+
+9 - Create a console application to interact with the tool
