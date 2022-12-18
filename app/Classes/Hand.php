@@ -161,7 +161,8 @@ class Hand
         return $values;
     }
 
-    public function returnHand(){
+    public function returnHand(): array
+    {
         $data = array();
 
         foreach($this->cards as $card => $e ){
@@ -177,7 +178,7 @@ class Hand
 
     public function returnEvaluation(): string
     {
-        Log::debug(__METHOD__ . ' : bof() ');
+        Log::debug(__METHOD__ );
         $return = "";
 
         $evaluatedHand = new FourOfaKind($this);
@@ -205,19 +206,6 @@ class Hand
             return "Two Pair";
         }
 
-        Log::debug(__METHOD__ . ' : eof() ');
         return $return;
-
-
-
-//        $w = app()->make(Strait::class,[$this])->evaluate();
-//        Log::debug($pre . ' w '.print_r($w,true));
-//        $s = app()->make(StraitFlush::class,[$this])->evaluate();
-//        Log::debug($pre . ' s '.print_r($s,true));
-//        $r = app()->make(TwoPair::class,[$this])->evaluate();
-//        Log::debug($pre . ' r '.print_r($r,true));
-//        $d = app()->make(ThreeOfaKind::class,[$this])->evaluate();
-//        Log::debug($pre . ' d '.print_r($d,true));
     }
-
 }

@@ -2,7 +2,6 @@
 
 namespace App\Evaluator;
 
-use App\Interface\Evaluators;
 use App\Classes\Hand;
 use Illuminate\Support\Facades\Log;
 

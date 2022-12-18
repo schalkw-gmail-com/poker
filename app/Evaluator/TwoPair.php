@@ -2,7 +2,6 @@
 
 namespace App\Evaluator;
 
-use App\Interface\Evaluators;
 use App\Classes\Hand;
 use Illuminate\Support\Facades\Log;
 
@@ -42,7 +41,6 @@ class TwoPair extends AbstractEvaluator
         Log::debug(__METHOD__ . ' eof() ');
         return $return;
     }
-
 
     /**
      *  Because we are dealing with ranks that is not of integer value [K,Q,J,A], it is better to do the pair checking

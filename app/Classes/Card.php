@@ -62,22 +62,18 @@ class Card
     public function isCardValid(): bool
     {
         Log::debug(__METHOD__ . ' bof() ');
-//        $return = true;
         if (!$this->isLengthCorrect() || !$this->isCharacterAlhpaNumeric()) {
             Log::debug(__METHOD__ . 'this card is not valid: length or characters are incorrect ');
             throw new \Exception('This is not a valid card');
-//            $return = false;
         }
 
         if (!$this->isSuitCorrect()) {
             Log::debug(__METHOD__ . 'this card is not valid: suit is incorrect ');
-//            $return = false;
             throw new \Exception('This is not a valid card');
         }
 
         if (!$this->isRankCorrect()) {
             Log::debug(__METHOD__ . 'this card is not valid: rank is incorrect ');
-//            $return = false;
             throw new \Exception('This is not a valid card');
         }
 
