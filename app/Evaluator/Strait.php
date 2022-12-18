@@ -6,13 +6,13 @@ use App\Interface\Evaluators;
 use App\Classes\Hand;
 use Illuminate\Support\Facades\Log;
 
-class Strait implements Evaluators
+class Strait extends AbstractEvaluator
 {
     public Hand $hand;
 
     public function __construct(Hand $hand)
     {
-        $this->hand = $hand;
+        parent::__construct($hand);
     }
 
     public function validHand(): bool

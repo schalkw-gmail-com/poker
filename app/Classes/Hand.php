@@ -172,7 +172,6 @@ class Hand
 
     public function evaluate(AbstractEvaluator $abstractEvaluator): bool
     {
-
         return $abstractEvaluator->evaluate();
     }
 
@@ -184,6 +183,11 @@ class Hand
         $evaluatedHand = new FourOfaKind($this);
         if($this->evaluate($evaluatedHand)){
             return "Four Of a Kind";
+        }
+
+        $evaluatedHand = new Strait($this);
+        if($this->evaluate($evaluatedHand)){
+            return "Strait";
         }
 
         Log::debug(__METHOD__ . ' : eof() ');

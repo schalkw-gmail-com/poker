@@ -184,3 +184,6 @@ centered around the rank and suit.
 
 4 - the integer values of the ranks, should be moved to the Ranks enum for 
     better logical reading, seeing that it is directly related to each rank
+
+5 - error handling should be improved to be more granular, in order to pinpoint which card in the array 
+    is invalid 
