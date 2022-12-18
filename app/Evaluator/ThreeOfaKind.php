@@ -32,7 +32,7 @@ class ThreeOfaKind implements Evaluators
      * @return bool
      */
     public function evaluate(): bool{
-        Log::debug(__METHOD__ . ' eof() ');
+        Log::debug(__METHOD__ . ' bof() ');
         $return = false;
 
         if($this->validHand()) {
