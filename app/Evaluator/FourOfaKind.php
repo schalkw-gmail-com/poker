@@ -34,6 +34,7 @@ class FourOfaKind implements Evaluators
         Log::debug(__METHOD__ . ' bof() ');
         $return = false;
 
+        // check to make sure the hand is valid before starting the evaluation process
         if ($this->validHand()) {
             $handRanks = $this->hand->returnRanks();
             $handValues = array_count_values($handRanks);
