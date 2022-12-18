@@ -2,19 +2,14 @@
 
 namespace Tests\Unit;
 
-use App\Classes\Card;
-use App\Evaluator\FourOfaKind;
 use App\Classes\Hand;
-use App\Classes\Suit;
-use App\Evaluator\ThreeOfaKind;
 use App\Evaluator\TwoPair;
-use PHPUnit\Framework\TestCase;
-use Tests\TestCase as bbb;
+use Tests\TestCase;
 
-class TwoPairTest extends bbb
+class TwoPairTest extends TestCase
 {
-
     public $twoPair;
+
     /**
      * setUp
      */
@@ -46,10 +41,10 @@ class TwoPairTest extends bbb
         $this->twoPair->addCard('H2');
 
         // three of the same rank
-         dump($this->twoPair);
-         $newEvaluator = new TwoPair($this->twoPair);
-         $result = $newEvaluator->evaluate();
-         $this->assertTrue($result);
+        //$this->inspect_variable($this->twoPair);
+        $newEvaluator = new TwoPair($this->twoPair);
+        $result = $newEvaluator->evaluate();
+        $this->assertTrue($result);
     }
 
     public function test_is_hand_two_of_pair_random(): void
@@ -94,7 +89,4 @@ class TwoPairTest extends bbb
         $result = $newEvaluator->evaluate();
         $this->assertFalse($result);
     }
-
-
-
 }
