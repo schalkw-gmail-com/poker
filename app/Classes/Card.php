@@ -9,23 +9,23 @@ class Card
     public string $name = '';
     public Suit $suite;
     public Ranks $rank;
-    public int $value;
+    public int $value; // this is to make it easier to do comparisons and calculations
 
     //these are the integer values of the individual ranks.
-    const integerValues  = [
-            'K' => 13,
-            'Q' => 12,
-            'J' => 11,
-            '10' => 10,
-            '9' => 9,
-            '8' => 8,
-            '7' => 7,
-            '6' => 6,
-            '5' => 5,
-            '4' => 4,
-            '3' => 3,
-            '2' => 2,
-            'A' => 1,
+    public const integerValues = [
+        'K' => 13,
+        'Q' => 12,
+        'J' => 11,
+        '10' => 10,
+        '9' => 9,
+        '8' => 8,
+        '7' => 7,
+        '6' => 6,
+        '5' => 5,
+        '4' => 4,
+        '3' => 3,
+        '2' => 2,
+        'A' => 1,
     ];
 
     /**
