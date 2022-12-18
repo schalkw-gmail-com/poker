@@ -4,9 +4,7 @@ namespace App\Evaluator;
 
 use App\Interface\Evaluators;
 use App\Classes\Hand;
-use Exception;
-
-use function PHPUnit\Framework\throwException;
+use Illuminate\Support\Facades\Log;
 
 class FourOfaKind implements Evaluators
 {
@@ -26,14 +24,17 @@ class FourOfaKind implements Evaluators
         return $this->hand->validateHand();
     }
 
-    // four of a kind = 4 cards of same rank plus another.
-
     /**
+     *  four of a kind = 4 cards of same rank plus another.
+     *
      * @return bool
      */
-    public function evaluate(): bool{
+    public function evaluate(): bool
+    {
+        Log::debug(__METHOD__ . ' bof() ');
         $return = false;
-        if($this->validHand()) {
+
+        if ($this->validHand()) {
             $handRanks = $this->hand->returnRanks();
             $handValues = array_count_values($handRanks);
 
@@ -43,6 +44,8 @@ class FourOfaKind implements Evaluators
                 $return = true;
             }
         }
+
+        Log::debug(__METHOD__ . ' eof() ');
         return $return;
     }
 }
