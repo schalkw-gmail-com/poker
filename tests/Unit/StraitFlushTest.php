@@ -2,20 +2,15 @@
 
 namespace Tests\Unit;
 
-use App\Classes\Card;
-use App\Evaluator\FourOfaKind;
 use App\Classes\Hand;
-use App\Classes\Suit;
 use App\Evaluator\StraitFlush;
-use App\Evaluator\ThreeOfaKind;
-use App\Evaluator\TwoPair;
-use PHPUnit\Framework\TestCase;
-use Tests\TestCase as bbb;
+use Tests\TestCase;
 
-class StraitFlushTest extends bbb
+class StraitFlushTest extends TestCase
 {
 
     public $straitFlush;
+
     /**
      * setUp
      */
@@ -47,10 +42,10 @@ class StraitFlushTest extends bbb
         $this->straitFlush->addCard('C7');
 
         // three of the same rank
-         dump($this->straitFlush);
-         $newEvaluator = new StraitFlush($this->straitFlush);
-         $result = $newEvaluator->evaluate();
-         $this->assertTrue($result);
+        //$this->inspect_variable($this->straitFlush);
+        $newEvaluator = new StraitFlush($this->straitFlush);
+        $result = $newEvaluator->evaluate();
+        $this->assertTrue($result);
     }
 
     public function test_is_hand_a_strait_flush_diamond(): void
@@ -63,7 +58,7 @@ class StraitFlushTest extends bbb
         $this->straitFlush->addCard('D7');
 
         // three of the same rank
-        dump($this->straitFlush);
+        //$this->inspect_variable($this->straitFlush);
         $newEvaluator = new StraitFlush($this->straitFlush);
         $result = $newEvaluator->evaluate();
         $this->assertTrue($result);
@@ -79,7 +74,7 @@ class StraitFlushTest extends bbb
         $this->straitFlush->addCard('HQ');
 
         // three of the same rank
-        dump($this->straitFlush);
+        //$this->inspect_variable($this->straitFlush);
         $newEvaluator = new StraitFlush($this->straitFlush);
         $result = $newEvaluator->evaluate();
         $this->assertTrue($result);
@@ -95,7 +90,7 @@ class StraitFlushTest extends bbb
         $this->straitFlush->addCard('HA');
 
         // three of the same rank
-        dump($this->straitFlush);
+        //$this->inspect_variable($this->straitFlush);
         $newEvaluator = new StraitFlush($this->straitFlush);
         $result = $newEvaluator->evaluate();
         $this->assertFalse($result);
@@ -111,11 +106,9 @@ class StraitFlushTest extends bbb
         $this->straitFlush->addCard('H9');
 
         // three of the same rank
-        dump($this->straitFlush);
+        //$this->inspect_variable($this->straitFlush);
         $newEvaluator = new StraitFlush($this->straitFlush);
         $result = $newEvaluator->evaluate();
         $this->assertFalse($result);
     }
-
-
 }

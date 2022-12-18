@@ -4,121 +4,181 @@ namespace App\Classes;
 
 use Illuminate\Support\Facades\Log;
 
-use function PHPUnit\Framework\throwException;
-
 class Card
 {
     public string $name = '';
     public Suit $suite;
     public Ranks $rank;
-    public int $value;
+    public int $value; // this is to make it easier to do comparisons and calculations
 
     //these are the integer values of the individual ranks.
-    const integerValues  = [
-            'K' => 13,
-            'Q' => 12,
-            'J' => 11,
-            '10' => 10,
-            '9' => 9,
-            '8' => 8,
-            '7' => 7,
-            '6' => 6,
-            '5' => 5,
-            '4' => 4,
-            '3' => 3,
-            '2' => 2,
-            'A' => 1,
+    public const integerValues = [
+        'K' => 13,
+        'Q' => 12,
+        'J' => 11,
+        '10' => 10,
+        '9' => 9,
+        '8' => 8,
+        '7' => 7,
+        '6' => 6,
+        '5' => 5,
+        '4' => 4,
+        '3' => 3,
+        '2' => 2,
+        'A' => 1,
     ];
 
-    public function __construct($card)
-    {
-        // take the card as input and define it into the rank and the suit
-        $this->setName($card);
-        $this->isCardValid();
-    }
-
-//    [S,D,H,C]
-//    [K,Q,J,10,9,8,7,6,5,4,3,2,A,JKR]
-//    [SK, SA, S10, S1]
-
     /**
+     * @param $card
      * @throws \Exception
      */
-    public function isCardValid(){
-        Log::debug(__METHOD__. ' bof() ');
-
-        //name is valid if
-        //  - it is alphanumeric only
-        //  - it is between 2 and 3 characters
-        //  - the first character is a letter as per the suits
-        //  - the remaining characters is in the allowed rank list
-        $return = true;
-        if(!$this->isLengthCorrect() || !$this->isCharacterAlhpaNumeric()){
-            Log::debug(__METHOD__. ' this is not a valid card: length or alpha numeric ');
+    public function __construct($card)
+    {
+        // set the name of the card
+        $this->setName($card);
+        try {
+            $this->isCardValid();
+        } catch (\Exception $e) {
             throw new \Exception('This is not a valid card');
         }
-
-        if(!$this->isSuitCorrect()){
-            Log::debug(__METHOD__. ' this is not a valid card : suite ');
-            throw new \Exception('This is not a valid card');
-        }
-
-        if(!$this->isRankCorrect()){
-            Log::debug(__METHOD__. ' this is not a valid card : rank ');
-            throw new \Exception('This is not a valid card');
-        }
-
-        Log::debug(__METHOD__. ' eof() ');
-        return $return;
     }
 
-    public function isSuitCorrect(){
+    /**
+     *
+     *  card is valid if
+     *  - it is alphanumeric only
+     *  - it is between 2 and 3 characters
+     *  - the first character is a letter as per the suits
+     *  - the remaining characters is in the allowed rank list
+     *
+     *  valid suite = [S,D,H,C]
+     *  valid rank = [K,Q,J,10,9,8,7,6,5,4,3,2,A,JKR]
+     *
+     * [SK, SA, S10, S1]
+     *
+     * @return bool
+     * @throws \Exception
+     */
+    public function isCardValid(): bool
+    {
+        Log::debug(__METHOD__ . ' bof() ');
+//        $return = true;
+        if (!$this->isLengthCorrect() || !$this->isCharacterAlhpaNumeric()) {
+            Log::debug(__METHOD__ . 'this card is not valid: length or characters are incorrect ');
+            throw new \Exception('This is not a valid card');
+//            $return = false;
+        }
+
+        if (!$this->isSuitCorrect()) {
+            Log::debug(__METHOD__ . 'this card is not valid: suit is incorrect ');
+//            $return = false;
+            throw new \Exception('This is not a valid card');
+        }
+
+        if (!$this->isRankCorrect()) {
+            Log::debug(__METHOD__ . 'this card is not valid: rank is incorrect ');
+//            $return = false;
+            throw new \Exception('This is not a valid card');
+        }
+
+        Log::debug(__METHOD__ . ' eof() ');
+        return true;
+    }
+
+    /**
+     *
+     * determine is the suit provided is valid
+     *
+     * Suit is define of by the first character of the name and can be one of : [S,D,H,C]
+     *
+     * Loop through the suits, defined by the enum, if we find a match set the card suit and exit the loop
+     *
+     * @return bool
+     */
+    public function isSuitCorrect(): bool
+    {
+        Log::debug(__METHOD__ . ' bof() ');
+        $return = false;
+
         $suits = Suit::cases();
         $cardSuit = substr($this->getName(), 0, 1);
-        var_dump("card Suit = ". $cardSuit);
-        foreach ($suits as $suit){
-            var_dump( $cardSuit. " - ".$suit->value );
-            if(strtolower($cardSuit) === strtolower($suit->value)){
+
+        foreach ($suits as $suit) {
+            Log::debug(__METHOD__ . ' card suit: ' . $cardSuit . ' -- suit->value: ' . $suit->value);
+            if (strtolower($cardSuit) === strtolower($suit->value)) {
                 $this->setSuite($suit);
-                return true;
+                $return = true;
+                break;
             }
         }
-        return false;
+
+        Log::debug(__METHOD__ . ' eof() ');
+        return $return;
     }
 
-    public function isRankCorrect(){
+    /**
+     * determine the rank of the card
+     *
+     * rank is defined as all the characters after the first one in the name and can be one of the
+     * valid ranks as per the enum [K,Q,J,10,9,8,7,6,5,4,3,2,A,JKR]
+     *
+     * Loop through the available ranks and if the correct one is found, set the card rank and exit the loop
+     *
+     * @return bool
+     */
+    public function isRankCorrect(): bool
+    {
+        Log::debug(__METHOD__ . ' bof() ');
+        $return = false;
         $ranks = Ranks::cases();
         $cardRank = substr($this->getName(), 1);
-        foreach ($ranks as $rank){
-            if(strtolower($cardRank) === strtolower($rank->value)){
+        foreach ($ranks as $rank) {
+            if (strtolower($cardRank) === strtolower($rank->value)) {
                 $this->setRank($rank);
                 $this->setValue(self::integerValues[$rank->value]);
-                return true;
+                $return = true;
+                break;
             }
         }
-        return false;
-    }
-
-    public function isCharacterAlhpaNumeric(){
-        $return = false;
-        if(ctype_alnum($this->name)){
-            $return = true;
-        }
+        Log::debug(__METHOD__ . ' eof() ');
         return $return;
     }
 
-    public function isLengthCorrect(){
+    /**
+     * determine is the name is alphanumeric
+     *
+     * @return bool
+     */
+    public function isCharacterAlhpaNumeric(): bool
+    {
+        Log::debug(__METHOD__ . ' bof() ');
         $return = false;
-        if((strlen($this->name) == 3 || (strlen($this->name) == 2))){
+        if (ctype_alnum($this->name)) {
             $return = true;
         }
+        Log::debug(__METHOD__ . ' eof() ');
         return $return;
     }
 
-    public function splitName($card){
-        // the name be received as
+    /**
+     * determine if the length of the name is correct
+     *
+     * @return bool
+     */
+    public function isLengthCorrect(): bool
+    {
+        Log::debug(__METHOD__ . ' bof() ');
+        $return = false;
+        if ((strlen($this->name) == 3 || (strlen($this->name) == 2))) {
+            $return = true;
+        }
+        Log::debug(__METHOD__ . ' eof() ');
+        return $return;
     }
 
+    /**
+     * @return string
+     */
     public function __toString(): string
     {
         return $this->name;
@@ -133,11 +193,10 @@ class Card
     }
 
     /**
-     * @param string $suite
+     * @param Suit $suite
      */
     public function setSuite(Suit $suite): void
     {
-        var_dump("set suite = ".print_r($suite,true));
         $this->suite = $suite;
     }
 
@@ -150,11 +209,10 @@ class Card
     }
 
     /**
-     * @param string $rank
+     * @param Ranks $rank
      */
     public function setRank(Ranks $rank): void
     {
-        var_dump("set rank = ".print_r($rank,true));
         $this->rank = $rank;
     }
 

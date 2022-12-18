@@ -2,14 +2,11 @@
 
 namespace Tests\Unit;
 
-use App\Classes\Card;
 use App\Evaluator\FourOfaKind;
 use App\Classes\Hand;
-use App\Classes\Suit;
-use PHPUnit\Framework\TestCase;
-use Tests\TestCase as bbb;
+use Tests\TestCase;
 
-class ForOfAKindTest extends bbb
+class FourOfAKindTest extends TestCase
 {
 
     public $fourOfaKindHand;
@@ -43,15 +40,14 @@ class ForOfAKindTest extends bbb
         $this->fourOfaKindHand->addCard('H3');
         $this->fourOfaKindHand->addCard('H4');
 
-        // four of the same rank
-         dump($this->fourOfaKindHand);
+         //$this->inspect_variable($this->fourOfaKindHand);
          $newEvaluator = new FourOfaKind($this->fourOfaKindHand);
          $result = $newEvaluator->evaluate();
          $this->assertTrue($result);
     }
 
 
-    public function test_is_hand_four_of_a_kind_with_one_duplication(){
+    public function test_is_hand_four_of_a_kind_with_one_duplication(): void{
         $this->fourOfaKindHand = new Hand();
         $this->fourOfaKindHand->addCard('D3');
         $this->fourOfaKindHand->addCard('S3');
@@ -59,14 +55,13 @@ class ForOfAKindTest extends bbb
         $this->fourOfaKindHand->addCard('H3');
         $this->fourOfaKindHand->addCard('H3');
 
-        // four of the same rank
-        dump($this->fourOfaKindHand);
+        //$this->inspect_variable($this->fourOfaKindHand);
         $newEvaluator = new FourOfaKind($this->fourOfaKindHand);
         $result = $newEvaluator->evaluate();
         $this->assertFalse($result);
     }
 
-    public function test_is_hand_four_of_a_kind_with_all_duplications(){
+    public function test_is_hand_four_of_a_kind_with_all_duplications(): void{
         $this->fourOfaKindHand = new Hand();
         $this->fourOfaKindHand->addCard('H3');
         $this->fourOfaKindHand->addCard('H3');
@@ -74,14 +69,13 @@ class ForOfAKindTest extends bbb
         $this->fourOfaKindHand->addCard('H3');
         $this->fourOfaKindHand->addCard('H3');
 
-        // four of the same rank
-        dump($this->fourOfaKindHand);
+        //$this->inspect_variable($this->fourOfaKindHand);
         $newEvaluator = new FourOfaKind($this->fourOfaKindHand);
         $result = $newEvaluator->evaluate();
         $this->assertFalse($result);
     }
 
-    public function test_is_hand_four_of_a_kind_switched_placements(){
+    public function test_is_hand_four_of_a_kind_switched_placements(): void{
         $this->fourOfaKindHand = new Hand();
         $this->fourOfaKindHand->addCard('H3');
         $this->fourOfaKindHand->addCard('S3');
@@ -89,8 +83,7 @@ class ForOfAKindTest extends bbb
         $this->fourOfaKindHand->addCard('D3');
         $this->fourOfaKindHand->addCard('C3');
 
-        // four of the same rank
-        dump($this->fourOfaKindHand);
+        //$this->inspect_variable($this->fourOfaKindHand);
         $newEvaluator = new FourOfaKind($this->fourOfaKindHand);
         $result = $newEvaluator->evaluate();
         $this->assertTrue($result);

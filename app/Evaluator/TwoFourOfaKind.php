@@ -31,22 +31,21 @@ class TwoFourOfaKind extends AbstractEvaluator
 //    }
 
     // four of a kind = 4 cards of same rank plus another.
-    public function evaluate(){
-        Log::debug( ' DDDDDDDD ');
+    public function evaluate():bool{
         $return = false;
         if($this->validHand()) {
-            Log::debug( ' rrrrrrr ');
+        //    Log::debug( ' rrrrrrr ');
             $handRanks = $this->hand->returnRanks();
             $handValues = array_count_values($handRanks);
-            Log::debug( ' ggggggg ');
+         //   Log::debug( ' ggggggg ');
             // the array contains only 2 values and the max of these 2 values is four
             // the values is from the ranks of the hand, their for it is a four of a kind hand
             if ((count($handValues) == 2) && (max($handValues) == 4)) {
                 $return = true;
-                Log::debug( ' hhhhh ');
+               // Log::debug( ' hhhhh ');
             }
         }
-        Log::debug( ' %%%%%%%%%%%%%%%%%%%%%%%%%%%5 == '.print_r($return,true));
+       // Log::debug( ' %%%%%%%%%%%%%%%%%%%%%%%%%%%5 == '.print_r($return,true));
         return $return;
     }
 }

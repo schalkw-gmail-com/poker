@@ -21,13 +21,13 @@ abstract class AbstractEvaluator implements Evaluators
         $this->hand = $hand;
     }
 
-    public function validHand()
+    public function validHand():bool
     {
         return $this->hand->validateHand();
     }
 
     // four of a kind = 4 cards of same rank plus another.
-    public function evaluate(){
+    public function evaluate():bool {
 //        Log::debug( ' 3333333333333333 ');
 //        $return = false;
 //        if($this->validHand()) {
@@ -44,5 +44,6 @@ abstract class AbstractEvaluator implements Evaluators
 //        }
 //        Log::debug( ' fffffffffffffff == '.print_r($return,true));
 //        return $return;
+    return false;
     }
 }

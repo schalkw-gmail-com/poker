@@ -2,6 +2,8 @@
 
 namespace App\Classes;
 
+use Illuminate\Support\Facades\Log;
+
 use App\Evaluator\AbstractEvaluator;
 use App\Evaluator\FourOfaKind;
 use App\Evaluator\Strait;
@@ -9,10 +11,10 @@ use App\Evaluator\StraitFlush;
 use App\Evaluator\ThreeOfaKind;
 use App\Evaluator\TwoFourOfaKind;
 use App\Evaluator\TwoPair;
-use Illuminate\Support\Facades\Log;
 
 class Hand
 {
+    // array to house of the cards contained in this hand
     public array $cards;
 
     public function __construct()
@@ -20,68 +22,143 @@ class Hand
         $this->cards = [];
     }
 
-    public function addCard($value){
+    /**
+     * Add the given card to the hand.
+     *
+     * To add a card to the hand, the card must be valid and the hand must contain less than 5 cards
+     * If the card was added return true else return false
+     *
+     * Return true or false
+     *
+     * @param $value
+     * @return bool
+     */
+    public function addCard($value): bool
+    {
+        Log::debug(__METHOD__ . ' bof() ');
         $return = false;
         $card = new Card($value);
 
-        if ($card->isCardValid() && count($this->cards) < 5){
+        if ($card->isCardValid() && count($this->cards) < 5) {
             if (!$this->checkForDuplicatedCards($card)) {
                 $this->cards[] = $card;
                 $return = true;
-                dump("Added the card = ".print_r($card->name,true));
+                Log::debug(__METHOD__ . ' Added the card ' . print_r($card->name, true));
             }
-        }else{
-            dump("Either the card is invalid or the hand is already full");
+        } else {
+            Log::debug(__METHOD__ . ' Card is invalid of hand is already full');
         }
 
+        Log::debug(__METHOD__ . ' eof() ');
         return $return;
     }
 
-    public function checkForDuplicatedCards($card){
-        foreach ($this->cards as $cards){
-            dump("$$ ".$cards->name . " ---- ".$card);
-            if(strtolower($cards->name) === strtolower($card)){
-                dump("we  found a duplicte");
-                return true;
+    /**
+     * Duplicate cards are not allowed to be added to the hand.
+     * Loop through the current cards in the hand, if the current card is found return true and exist the loop
+     *
+     * @param $card
+     * @return bool
+     */
+    public function checkForDuplicatedCards($card): bool
+    {
+        Log::debug(__METHOD__ . ' bof() ');
+        $return = false;
+
+        foreach ($this->cards as $cards) {
+            if (strtolower($cards->name) === strtolower($card)) {
+                Log::debug(__METHOD__ . ' Duplicate card found, not adding it to the hand');
+                $return = true;
+                break;
             }
         }
-        dump("no duplicate found");
-        return false;
+
+        Log::debug(__METHOD__ . ' eof() ');
+        return $return;
     }
 
-    public function viewCard($cardNumber){
+    /**
+     * view the details of the specified card
+     *
+     * @param $cardNumber
+     * @return Card
+     */
+    public function viewCard($cardNumber): Card
+    {
         return $this->cards[$cardNumber];
     }
 
-    public function validateHand(){
+    /**
+     * A hand is valid if it contains 5 cards.
+     * Because the system automatically checks if the cards is valid and not duplicated, we do not need to check that
+     * to determine if the hand is valid, only that is has 5 cards
+     *
+     * @return bool
+     */
+    public function validateHand(): bool
+    {
+        Log::debug(__METHOD__ . ' bof() ');
         $return = false;
-        if(count($this->cards) == 5){
+
+        if (count($this->cards) == 5) {
             $return = true;
         }
+
+        Log::debug(__METHOD__ . ' eof() ');
         return $return;
     }
 
-    public function returnRanks(){
+    /**
+     * Loop through the cards in the hand and return their ranks
+     *
+     * @return array
+     */
+    public function returnRanks(): array
+    {
+        Log::debug(__METHOD__ . ' bof() ');
         $ranks = array();
-        foreach($this->cards as $card => $e ){
+
+        foreach ($this->cards as $card => $e) {
             $ranks[] = $e->rank->value;
         }
+
+        Log::debug(__METHOD__ . ' eof() ');
         return $ranks;
     }
 
-    public function returnSuites(){
+    /**
+     * loop throught the cards in the hand and return their suites
+     *
+     * @return array
+     */
+    public function returnSuites(): array
+    {
+        Log::debug(__METHOD__ . ' bof() ');
         $suites = array();
-        foreach($this->cards as $card => $e ){
+
+        foreach ($this->cards as $card => $e) {
             $suites[] = $e->suite->value;
         }
+
+        Log::debug(__METHOD__ . ' eof() ');
         return $suites;
     }
 
-    public function returnIntegerValues(){
+    /**
+     * Loop through the cards in the hand and return the integer values of the cards
+     *
+     * @return array
+     */
+    public function returnIntegerValues(): array
+    {
+        Log::debug(__METHOD__ . ' bof() ');
         $values = array();
-        foreach($this->cards as $card => $e ){
+
+        foreach ($this->cards as $card => $e) {
             $values[] = $e->value;
         }
+
+        Log::debug(__METHOD__ . ' eof() ');
         return $values;
     }
 
@@ -95,7 +172,7 @@ class Hand
     }
 
     public function xxx(AbstractEvaluator $sss){
-        var_dump(" sss ".print_r($sss,true));
+
         return $sss->evaluate();
     }
 
@@ -111,11 +188,8 @@ class Hand
 
 //        $w = new TwoFourOfaKind($this);
 //        $e = $w->evaluate();
-        var_dump("@@@@@@@@@@@@@@@2");
         $xxxB = new TwoFourOfaKind($this);
-        var_dump("%%%%%%%");
         $www = $this->xxx($xxxB);
-        var_dump("RRRRRRRRRRRRRRRR".print_r($www,true));
 
        // Log::debug($pre . ' x '.print_r(var_dump($w),true));
        // return "TwoFourOfAKind";

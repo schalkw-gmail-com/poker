@@ -29,7 +29,7 @@ class Controller extends BaseController
     function testCard(Request $request): JsonResponse
     {
         $pre = __METHOD__ . ' : ';
-        Log::debug($pre . 'bof', func_get_args());
+        Log::debug($pre . 'bof');
 
         try{
             $card = new Card($request->input('card'));

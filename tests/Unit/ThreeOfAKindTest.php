@@ -2,18 +2,15 @@
 
 namespace Tests\Unit;
 
-use App\Classes\Card;
-use App\Evaluator\FourOfaKind;
 use App\Classes\Hand;
-use App\Classes\Suit;
 use App\Evaluator\ThreeOfaKind;
-use PHPUnit\Framework\TestCase;
-use Tests\TestCase as bbb;
+use Tests\TestCase;
 
-class ThreeOfAKindTest extends bbb
+class ThreeOfAKindTest extends TestCase
 {
 
     public $threeOfaKindHand;
+
     /**
      * setUp
      */
@@ -45,10 +42,10 @@ class ThreeOfAKindTest extends bbb
         $this->threeOfaKind->addCard('C2');
 
         // three of the same rank
-         dump($this->threeOfaKind);
-         $newEvaluator = new ThreeOfaKind($this->threeOfaKind);
-         $result = $newEvaluator->evaluate();
-         $this->assertTrue($result);
+        //$this->inspect_variable($this->threeOfaKind);
+        $newEvaluator = new ThreeOfaKind($this->threeOfaKind);
+        $result = $newEvaluator->evaluate();
+        $this->assertTrue($result);
     }
 
     public function test_is_hand_three_of_a_kind_pair(): void
@@ -61,7 +58,7 @@ class ThreeOfAKindTest extends bbb
         $this->threeOfaKind->addCard('H9');
 
         // three of the same rank
-        dump($this->threeOfaKind);
+        //$this->inspect_variable($this->threeOfaKind);
         $newEvaluator = new ThreeOfaKind($this->threeOfaKind);
         $result = $newEvaluator->evaluate();
         $this->assertTrue($result);
@@ -77,11 +74,9 @@ class ThreeOfAKindTest extends bbb
         $this->threeOfaKind->addCard('H9');
 
         // three of the same rank
-        dump($this->threeOfaKind);
+        //$this->inspect_variable($this->threeOfaKind);
         $newEvaluator = new ThreeOfaKind($this->threeOfaKind);
         $result = $newEvaluator->evaluate();
         $this->assertFalse($result);
     }
-
-
 }

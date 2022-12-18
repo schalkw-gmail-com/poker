@@ -2,15 +2,11 @@
 
 namespace Tests\Unit;
 
-use App\Classes\Card;
-use App\Evaluator\FourOfaKind;
 use App\Classes\Hand;
-use App\Classes\Suit;
 use App\Evaluator\Strait;
-use PHPUnit\Framework\TestCase;
-use Tests\TestCase as bbb;
+use Tests\TestCase;
 
-class StraitTest extends bbb
+class StraitTest extends TestCase
 {
     public $stairtHand;
 
