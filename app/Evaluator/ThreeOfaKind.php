@@ -45,6 +45,7 @@ class ThreeOfaKind implements Evaluators
                 $return = true;
             }
         }
+
         Log::debug(__METHOD__ . ' eof() ');
         return $return;
     }
