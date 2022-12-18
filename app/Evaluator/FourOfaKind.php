@@ -2,13 +2,7 @@
 
 namespace App\Evaluator;
 
-use App\Interface\Evaluators;
 use App\Classes\Hand;
-use Exception;
-
-use Illuminate\Support\Facades\Log;
-
-use function PHPUnit\Framework\throwException;
 
 class FourOfaKind extends AbstractEvaluator
 {

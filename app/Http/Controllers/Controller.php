@@ -52,12 +52,10 @@ class Controller extends BaseController
      */
     public function addCards(Request $request): JsonResponse
     {
-        $pre = __METHOD__ . ' : ';
-        Log::debug($pre . 'bof', func_get_args());
+        Log::debug(__METHOD__ . ' : ');
+
         $returnData = array();
         $responseCode = Response::HTTP_OK;
-
-        Log::debug($pre . ' ssssssssss ' . print_r($request->toArray(), true));
 
         try {
             $request->validate([
@@ -66,17 +64,17 @@ class Controller extends BaseController
 
             $cards = $request->input('card');
             $hand = new Hand();
+
             foreach ($cards as $card) {
-                Log::debug($pre . ' ssssssssss ' . print_r($card, true));
                 $hand->addCard($card);
             }
+
             $returnData['data']['hand'] = $hand->returnHand();
             $returnData['data']['evaluation'] = $hand->returnEvaluation();
         } catch (\Exception $exception) {
             $returnData['error'] = $exception->getMessage();
             $responseCode = Response::HTTP_BAD_REQUEST;
         }
-
 
         return response()->json($returnData, $responseCode);
     }

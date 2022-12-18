@@ -2,18 +2,17 @@
 
 namespace App\Evaluator;
 
-use App\Interface\Evaluators;
 use App\Classes\Hand;
 use Illuminate\Support\Facades\Log;
 
-class StraitFlush implements Evaluators
+class StraitFlush extends AbstractEvaluator
 {
 
     public Hand $hand;
 
     public function __construct(Hand $hand)
     {
-        $this->hand = $hand;
+        parent::__construct($hand);
     }
 
     /**

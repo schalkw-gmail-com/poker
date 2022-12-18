@@ -6,14 +6,14 @@ use App\Interface\Evaluators;
 use App\Classes\Hand;
 use Illuminate\Support\Facades\Log;
 
-class TwoPair implements Evaluators
+class TwoPair extends AbstractEvaluator
 {
 
     public Hand $hand;
 
     public function __construct(Hand $hand)
     {
-        $this->hand = $hand;
+        parent::__construct($hand);
     }
 
     /**

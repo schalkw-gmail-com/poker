@@ -185,9 +185,24 @@ class Hand
             return "Four Of a Kind";
         }
 
+        $evaluatedHand = new StraitFlush($this);
+        if($this->evaluate($evaluatedHand)){
+            return "Strait Flush";
+        }
+
         $evaluatedHand = new Strait($this);
         if($this->evaluate($evaluatedHand)){
             return "Strait";
+        }
+
+        $evaluatedHand = new ThreeOfaKind($this);
+        if($this->evaluate($evaluatedHand)){
+            return "Three of a kind";
+        }
+
+        $evaluatedHand = new TwoPair($this);
+        if($this->evaluate($evaluatedHand)){
+            return "Two Pair";
         }
 
         Log::debug(__METHOD__ . ' : eof() ');
