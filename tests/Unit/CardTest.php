@@ -3,14 +3,12 @@
 namespace Tests\Unit;
 
 use App\Classes\Card;
-use App\Classes\Suit;
-use PHPUnit\Framework\TestCase;
-use Tests\TestCase as bbb;
+use Tests\TestCase;
 
-class CardTest extends bbb
+class CardTest extends TestCase
 {
 
-    protected $card;
+    protected Card $card;
 
     /**
      * setUp
@@ -36,19 +34,22 @@ class CardTest extends bbb
         $this->assertTrue($card);
     }
 
-    public function test_card_validator_is_length_two_characters(){
+    public function test_card_validator_is_length_two_characters(): void
+    {
         $card = new Card('A1');
         $result = $card->isLengthCorrect();
         $this->assertTrue($result);
     }
 
-    public function test_card_validator_is_length_three_characters(){
+    public function test_card_validator_is_length_three_characters(): void
+    {
         $card = new Card('A10');
         $result = $card->isLengthCorrect();
         $this->assertTrue($result);
     }
 
-    public function test_card_validator_is_length_more_characters(){
+    public function test_card_validator_is_length_more_characters(): void
+    {
         $card = new Card('A103');
         $result = $card->isLengthCorrect();
         $this->assertFalse($result);
@@ -68,68 +69,69 @@ class CardTest extends bbb
         $this->assertFalse($result);
     }
 
-    public function test_is_suit_correct(){
+    public function test_is_suit_correct(): void
+    {
         $card = new Card('S1');
         $result = $card->isSuitCorrect();
         $this->assertTrue($result);
     }
 
 
-    public function test_is_suit_not_correct(){
+    public function test_is_suit_not_correct(): void
+    {
         $card = new Card('Z1');
         $result = $card->isSuitCorrect();
         $this->assertFalse($result);
     }
 
 
-    public function test_is_rank_valid(){
+    public function test_is_rank_valid(): void
+    {
         $card = new Card('H2');
         $result = $card->isRankCorrect();
         $this->assertTrue($result);
     }
 
-    public function test_is_rank_invalid(){
+    public function test_is_rank_invalid(): void
+    {
         $card = new Card('H1');
         $result = $card->isRankCorrect();
         $this->assertFalse($result);
     }
 
-    public function test_is_card_valid(){
+    public function test_is_card_valid(): void
+    {
         $card = new Card('H2');
         $result = $card->isCardValid();
         $this->assertTrue($result);
     }
 
-    public function test_is_card_invalid_x1(){
+    public function test_is_card_invalid_x1(): void
+    {
         $card = new Card('X1');
         $result = $card->isCardValid();
         $this->assertFalse($result);
     }
 
 
-    public function test_is_card_invalid_aaa123(){
+    public function test_is_card_invalid_aaa123(): void
+    {
         $card = new Card('aaa123');
         $result = $card->isCardValid();
         $this->assertFalse($result);
     }
 
-    public function test_is_card_invalid_aaas(){
+    public function test_is_card_invalid_aaas(): void
+    {
         $card = new Card('aaas');
         $result = $card->isCardValid();
         $this->assertFalse($result);
     }
 
-    public function test_is_card_invalid_special_characters(){
+    public function test_is_card_invalid_special_characters(): void
+    {
         $card = new Card('-*/*-');
         $result = $card->isCardValid();
         $this->assertFalse($result);
     }
-
-    /**
-     * A card can only be of one suite
-     */
-
-    /**
-     * A card can only have one rank
-     */
 }
