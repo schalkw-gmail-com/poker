@@ -58,8 +58,12 @@ php8.1 vendor/bin/phpunit --testdox
 ```
 
 ## Requirements:
-    PHP8.1
+    PHP 8.1
     composer (php package manager)
+
+Please note that I run multiple PHP versions on my machine, therefor I specify the version when making the call (PHP8.1)
+If you install PHP 8.1 on a bare metal machine, you do not need to specify the version ie (php artisan serve) will work. 
+
 
 ## Setup instructions:
 1 - clone the repo to your local machine
